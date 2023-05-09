@@ -11,3 +11,23 @@ class Solution:
                 i = j
         res += str(len(prev) - i) + prev[-1]
         return res
+
+
+'''
+*************Iteration method**************
+class Solution:
+    def countAndSay(self, n: int) -> str:
+        res = "1"
+        for i in range(1, n):
+            curr = ""
+            j = 0
+            while j < len(res):
+                count = 1
+                while j+1 < len(res) and res[j] == res[j+1]:
+                    count += 1
+                    j += 1
+                curr += str(count) + res[j]
+                j += 1
+            res = curr
+        return res
+'''
