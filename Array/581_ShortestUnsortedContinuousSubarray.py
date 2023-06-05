@@ -37,8 +37,8 @@ class Solution:
 
         return j - i + 1
 
-'''
-class Solution:
+
+class Solution2:
     def findUnsortedSubarray(self, nums: List[int]) -> int:
         n = len(nums)
         maxn, right = float("-inf"), -1
@@ -53,4 +53,18 @@ class Solution:
             else:
                 minn = nums[n - i - 1]
         return 0 if right == -1 else right - left + 1
-'''
+
+
+class Solution3:
+    def findUnsortedSubarray(self, nums: List[int]) -> int:
+        n = len(nums)
+        if n < 2:
+            return 0
+        nums_sorted = sorted(nums)
+        i, j = 0, n - 1
+        while i < j and (nums[i] == nums_sorted[i] or nums[j] == nums_sorted[j]):
+            if nums[i] == nums_sorted[i]:
+                i += 1
+            if nums[j] == nums_sorted[j]:
+                j -= 1
+        return j - i + 1 if i < j else 0
