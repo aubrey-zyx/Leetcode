@@ -46,3 +46,47 @@ class LRUCache:
 # obj = LRUCache(capacity)
 # param_1 = obj.get(key)
 # obj.put(key,value)
+
+
+# OrderedDict
+class LRUCache(collections.OrderedDict):
+
+    def __init__(self, capacity: int):
+        super().__init__()
+        self.cap = capacity
+
+    def get(self, key: int) -> int:
+        if key not in self:
+            return -1
+        self.move_to_end(key)
+        return self[key]
+
+    def put(self, key: int, value: int) -> None:
+        if key in self:
+            self.move_to_end(key)
+        self[key] = value
+        if len(self) > self.cap:
+            self.popitem(last=False)
+
+
+# Just use dict
+class LRUCache:
+
+    def __init__(self, capacity: int):
+        self.cache = {}
+        self.cap = capacity
+
+    def get(self, key: int) -> int:
+        val = self.cache.get(key, -1)
+        if val != -1:
+            self.cache.pop(key)
+            self.cache[key] = val
+        return val
+
+    def put(self, key: int, value: int) -> None:
+        if key in self.cache:
+            self.cache.pop(key)
+        self.cache[key] = value
+        if len(self.cache) > self.cap:
+            first_key = next(iter(self.cache))
+            self.cache.pop(first_key)
