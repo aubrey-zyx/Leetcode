@@ -13,3 +13,16 @@ class Solution:
             j += 1
             maxlen = max(maxlen, j - i)
         return maxlen
+
+
+class Solution2:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        res = 0
+        l = 0
+        pos = {}
+        for r in range(len(s)):
+            if s[r] in pos and pos[s[r]] >= l:
+                l = pos[s[r]] + 1
+            pos[s[r]] = r
+            res = max(res, r - l + 1)
+        return res
