@@ -41,3 +41,35 @@ class Solution2:
             prev = (freq + 1, ch)
 
         return res
+
+
+class Solution3:
+    def reorganizeString(self, s: str) -> str:
+        n = len(s)
+        if n < 2:
+            return s
+
+        cnt = collections.Counter(s)
+        if max(cnt.values()) > (n + 1) // 2:
+            return ""
+
+        res = []
+        heap = []
+        for ch, freq in cnt.items():
+            heapq.heappush(heap, (-freq, ch))
+
+        while len(heap) > 1:
+            _, ch1 = heapq.heappop(heap)
+            _, ch2 = heapq.heappop(heap)
+            res.extend([ch1, ch2])
+            cnt[ch1] -= 1
+            cnt[ch2] -= 1
+            if cnt[ch1] > 0:
+                heapq.heappush(heap, (-cnt[ch1], ch1))
+            if cnt[ch2] > 0:
+                heapq.heappush(heap, (-cnt[ch2], ch2))
+
+        if heap:
+            res.append(heap[0][1])
+
+        return "".join(res)
