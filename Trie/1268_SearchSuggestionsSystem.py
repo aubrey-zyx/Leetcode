@@ -30,7 +30,7 @@ class TrieNode:
         self.words = []
 
 
-class Solution:
+class Solution2:
     def suggestedProducts(self, products: List[str], searchWord: str) -> List[List[str]]:
         def insert(root, word):
             cur = root
