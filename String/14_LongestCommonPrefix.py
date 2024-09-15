@@ -12,8 +12,8 @@ class Solution:
                 return str_max[:i]
         return str_min
 
-'''
-class Solution:
+
+class Solution2:
     def longestCommonPrefix(self, strs: List[str]) -> str:
         res = ""       
         for tmp in zip(*strs):
@@ -22,4 +22,3 @@ class Solution:
             else:
                 break
         return res
-'''
