@@ -5,14 +5,14 @@
 #         self.left = left
 #         self.right = right
 
-# Recursive DFS
+# Recursive DFS BFS
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         if not root:
             return 0
         return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
 
-# Iterative DFS
+# Iterative DFS BFS
 class Solution2:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         stack = [[root, 1]]

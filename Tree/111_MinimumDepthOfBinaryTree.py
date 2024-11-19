@@ -1,4 +1,4 @@
-# DFS
+# DFS BFS
 class Solution:
     def minDepth(self, root: Optional[TreeNode]) -> int:
         if not root:

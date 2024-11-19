@@ -36,7 +36,7 @@ class Trie:
         return "#" in cur
 
 
-# DFS & Memorization Search
+# DFS BFS & Memorization Search
 class Solution2:
     def findAllConcatenatedWordsInADict(self, words: List[str]) -> List[str]:
         wordSet = set(words)

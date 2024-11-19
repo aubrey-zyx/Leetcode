@@ -22,7 +22,7 @@ class Solution:
         return total
 
 
-# DFS
+# DFS BFS
 class Solution2:
     def getImportance(self, employees: List['Employee'], id: int) -> int:
         mp = {employee.id: employee for employee in employees}

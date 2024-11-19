@@ -36,3 +36,32 @@ class Solution:
 
         res = [node.val for node in q]
         return res
+
+
+
+class Solution2:
+    def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
+        parents = {}
+        res = []
+        visited = set()
+
+        def find_parent(node, parent):
+            if node:
+                parents[node] = parent
+                find_parent(node.left, node)
+                find_parent(node.right, node)
+
+        def dfs(node, distance):
+            if not node or node in visited:
+                return
+            visited.add(node)
+            if distance == 0:
+                res.append(node.val)
+                return
+            dfs(parents[node], distance - 1)
+            dfs(node.left, distance - 1)
+            dfs(node.right, distance - 1)
+
+        find_parent(root, None)
+        dfs(target, k)
+        return res

@@ -19,3 +19,5 @@ class Solution:
                         visited.add((new_x, new_y))
                         q.append((new_x, new_y))
             step += 1
+
+        return step

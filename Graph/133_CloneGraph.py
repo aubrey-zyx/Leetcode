@@ -6,7 +6,7 @@ class Node:
         self.neighbors = neighbors if neighbors is not None else []
 """
 
-#DFS
+# DFS
 class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
         oldToNew = {}
@@ -24,7 +24,7 @@ class Solution:
         return dfs(node) if node else None
 
 
-#BFS
+# BFS
 class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
         if not node:
