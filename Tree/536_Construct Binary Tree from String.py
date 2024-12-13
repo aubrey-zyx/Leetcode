@@ -29,3 +29,37 @@ class Solution:
                     stack[-1].right = node
 
         return stack[-1] if stack else TreeNode(int(num))
+
+
+class Solution2:
+    def str2tree(self, s: str) -> Optional[TreeNode]:
+        def get_num(s, i):
+            positive = True
+            if s[i] == "-":
+                positive = False
+                i += 1
+            num = 0
+            while i < len(s) and s[i].isdigit():
+                num = num * 10 + int(s[i])
+                i += 1
+            return num if positive else -num, i
+
+        def dfs(s, i):
+            if i == len(s):
+                return None, i
+
+            # Calculate the root first
+            value, i = get_num(s, i)
+            node = TreeNode(value)
+
+            # If any data left, check for the first subtree, which will be the left child
+            if i < len(s) and s[i] == "(":
+                node.left, i = dfs(s, i + 1)
+
+            # Right child
+            if node.left and i < len(s) and s[i] == "(":
+                node.right, i = dfs(s, i + 1)
+
+            return node, i + 1 if i < len(s) and s[i] == ")" else i
+
+        return dfs(s, 0)[0]

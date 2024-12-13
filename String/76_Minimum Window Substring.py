@@ -24,29 +24,24 @@ class Solution2:
 
         cnt_t = Counter(t)
         cnt_win = defaultdict(int)
-        min_len = float("inf")
-        res_l = res_r = None
-        formed = 0
+        res_l, res_r = -1, len(s)
         required = len(cnt_t)
+        formed = 0
 
         l = 0
-        for r in range(len(s)):
-            c = s[r]
+        for r, c in enumerate(s):
             cnt_win[c] += 1
             if c in cnt_t and cnt_win[c] == cnt_t[c]:
                 formed += 1
             while l <= r and formed == required:
-                if r - l + 1 < min_len:
-                    min_len = r - l + 1
-                    res_l = l
-                    res_r = r
-                lc = s[l]
-                cnt_win[lc] -= 1
-                if lc in cnt_t and cnt_win[lc] < cnt_t[lc]:
+                if r - l < res_r - res_l:
+                    res_l, res_r = l, r
+                cnt_win[s[l]] -= 1
+                if s[l] in cnt_t and cnt_win[s[l]] < cnt_t[s[l]]:
                     formed -= 1
                 l += 1
 
-        return "" if min_len == float("inf") else s[res_l: res_r + 1]
+        return "" if res_l == -1 else s[res_l: res_r + 1]
 
 
 # O(m + n), but when |filtered_S| <<< |S|, the complexity would reduce
