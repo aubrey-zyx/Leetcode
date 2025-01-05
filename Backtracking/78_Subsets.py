@@ -29,3 +29,23 @@ class Solution2:
 
         dfs(0, [])
         return res
+
+
+# Iterative
+class Solution3:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        res = [[]]
+        for num in nums:
+            res += [subset + [num] for subset in res]
+        return res
+
+
+# Bit Manipulation
+class Solution4:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        n = len(nums)
+        res = []
+        for i in range(1 << n):
+            subset = [nums[j] for j in range(n) if i & (1 << j)]
+            res.append(subset)
+        return res

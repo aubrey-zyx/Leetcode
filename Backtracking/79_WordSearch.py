@@ -2,22 +2,19 @@ class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
         rows, cols = len(board), len(board[0])
         path = set()
-        directions = [[-1, 0], [1, 0], [0, -1], [0, 1]]
 
         def dfs(r, c, i):
-            if board[r][c] != word[i]:
-                return False
-            if i == len(word) - 1:
+            if i == len(word):
                 return True
-
+            if r not in range(rows) or c not in range(cols) or (r, c) in path or board[r][c] != word[i]:
+                return False
             path.add((r, c))
-            res = False
-            for dr, dc in directions:
-                nr, nc = r + dr, c + dc
-                if 0 <= nr < rows and 0 <= nc < cols and (nr, nc) not in path:
-                    if dfs(nr, nc, i + 1):
-                        res = True
-                        break
+            res = (
+                dfs(r + 1, c, i + 1)
+                or dfs(r - 1, c, i + 1)
+                or dfs(r, c + 1, i + 1)
+                or dfs(r, c - 1, i + 1)
+            )
             path.remove((r, c))
             return res
 
