@@ -23,19 +23,18 @@ class Solution2:
             return 0
 
         l, r = 0, len(height) - 1
-        left_max, right_max = height[l], height[r]
+        left_max, right_max = height[0], height[-1]
         res = 0
 
         while l < r:
-            if left_max < right_max:
-                l += 1
+            if height[l] < height[r]:
                 left_max = max(left_max, height[l])
                 res += left_max - height[l]
+                l += 1
             else:
-                r -= 1
                 right_max = max(right_max, height[r])
                 res += right_max - height[r]
-
+                r -= 1
         return res
 
 
@@ -43,7 +42,6 @@ class Solution2:
 class Solution3:
     def trap(self, height: List[int]) -> int:
         res = 0
-        n = len(height)
         stack = []
 
         for i, h in enumerate(height):

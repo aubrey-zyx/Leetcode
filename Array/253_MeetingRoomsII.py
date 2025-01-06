@@ -26,9 +26,8 @@ class Solution:
     def minMeetingRooms(self, intervals: List[List[int]]) -> int:
         heap = []
         intervals.sort()
-        for i in intervals:
-            if not heap or i[0] < heap[0]:
-                heapq.heappush(heap, i[1])
-            else:
-                heapq.heapreplace(heap, i[1])
+        for start, end in intervals:
+            if heap and start >= heap[0]:
+                heapq.heappop(heap)
+            heapq.heappush(heap, end)
         return len(heap)

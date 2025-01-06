@@ -16,3 +16,19 @@ class Solution:
 
         backtrack(0, [])
         return res
+
+
+class Solution2:
+    def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
+        res = []
+
+        def dfs(i, path):
+            if i == len(s):
+                res.append(" ".join(path))
+                return
+            for word in wordDict:
+                if s[i:].startswith(word):
+                    dfs(i + len(word), path + [word])
+
+        dfs(0, [])
+        return res
