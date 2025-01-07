@@ -1,11 +1,5 @@
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        nums = [num for row in matrix for num in row]
-        return target in nums
-
-
-class Solution2:
-    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         m, n = len(matrix), len(matrix[0])
         l, r = 0, m * n - 1
         while l <= r:
@@ -20,7 +14,7 @@ class Solution2:
         return False
 
 
-class Solutio3:
+class Solutio2:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
         m, n = len(matrix), len(matrix[0])
 
