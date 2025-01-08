@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
         if not strs:
@@ -13,18 +10,8 @@ class Solution:
         return str_min
 
 
+# Vertical Scanning
 class Solution2:
-    def longestCommonPrefix(self, strs: List[str]) -> str:
-        res = ""       
-        for tmp in zip(*strs):
-            if len(set(tmp)) == 1:
-                res += tmp[0]
-            else:
-                break
-        return res
-
-
-class Solution3:
     def longestCommonPrefix(self, strs: List[str]) -> str:
         if not strs:
             return ""
@@ -34,3 +21,17 @@ class Solution3:
                 if i == len(strs[j]) or strs[j][i] != c:
                     return strs[0][:i]
         return strs[0]
+
+
+# Horizontal Scanning
+class Solution3:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        if not strs:
+            return ""
+        prefix = strs[0]
+        for i in range(1, len(strs)):
+            while strs[i].find(prefix) != 0:
+                prefix = prefix[:-1]
+                if prefix == "":
+                    return ""
+        return prefix
