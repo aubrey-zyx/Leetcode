@@ -19,10 +19,8 @@ class Solution2:
         """
         Do not return anything, modify nums in-place instead.
         """
-        n = len(nums)
-        left = right = 0
-        while right < n:
-            if nums[right] != 0:
-                nums[left], nums[right] = nums[right], nums[left]
-                left += 1
-            right += 1
+        w = 0
+        for i, num in enumerate(nums):
+            if num != 0:
+                nums[i], nums[w] = nums[w], nums[i]
+                w += 1

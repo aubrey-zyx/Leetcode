@@ -49,3 +49,15 @@ class Solution4:
             subset = [nums[j] for j in range(n) if i & (1 << j)]
             res.append(subset)
         return res
+
+
+# Bit
+class Solution5:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        n = len(nums)
+        res = []
+        for i in range(2 ** n, 2 ** (n + 1)):
+            bitmask = bin(i)[3:]
+            subset = [nums[j] for j in range(n) if bitmask[j] == "1"]
+            res.append(subset)
+        return res

@@ -1,13 +1,13 @@
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        def valid(node, left, right):
+        def validate(node, low, high):
             if not node:
                 return True
-            if not left < node.val < right:
+            if node.val <= low or node.val >= high:
                 return False
-            return valid(node.left, left, node.val) and valid(node.right, node.val, right)
+            return validate(node.left, low, node.val) and validate(node.right, node.val, high)
 
-        return valid(root, float("-inf"), float("inf"))
+        return validate(root, float("-inf"), float("inf"))
 
 
 class Solution2:
