@@ -14,7 +14,17 @@ class Solution:
         return self.res
 
 
-# Iteratively
+class Solution2:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        def inorder(root):
+            if not root:
+                return []
+            return inorder(root.left) + [root.val] + inorder(root.right)
+
+        return inorder(root)[k - 1]
+
+
+# Iteratively. O(H + k)
 class Solution2:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
         stack = []

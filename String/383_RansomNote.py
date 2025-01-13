@@ -1,6 +1,3 @@
-import collections
-
-
 class Solution:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
         cnt1 = collections.Counter(ransomNote)
@@ -11,12 +8,10 @@ class Solution:
         return True
 
 
-'''
-class Solution:
+class Solution2:
     def canConstruct(self, ransomNote: str, magazine: str) -> bool:
         cnt1 = Counter(ransomNote)
         cnt2 = Counter(magazine)
         if cnt1 & cnt2 == cnt1:
             return True
         return False
-'''
