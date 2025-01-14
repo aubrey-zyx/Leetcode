@@ -19,3 +19,43 @@ class Solution2:
                 idx = bisect_left(sub, num)  # Find the index of the first element >= num
                 sub[idx] = num
         return len(sub)
+
+
+# Implement bisect_left
+class Solution3:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        sub = []
+        for num in nums:
+            if not sub or num > sub[-1]:
+                sub.append(num)
+            else:
+                l, r = 0, len(sub) - 1
+                pos = r
+                while l <= r:
+                    m = (l + r) // 2
+                    if sub[m] >= num:
+                        pos = m
+                        r = m - 1
+                    else:
+                        l = m + 1
+                sub[pos] = num
+        return len(sub)
+
+
+# Implement bisect_left
+class Solution4:
+    def lengthOfLIS(self, nums: List[int]) -> int:
+        sub = []
+        for num in nums:
+            if not sub or num > sub[-1]:
+                sub.append(num)
+            else:
+                l, r = 0, len(sub)
+                while l < r:
+                    m = (l + r) // 2
+                    if sub[m] >= num:
+                        r = m
+                    else:
+                        l = m + 1
+                sub[l] = num
+        return len(sub)
