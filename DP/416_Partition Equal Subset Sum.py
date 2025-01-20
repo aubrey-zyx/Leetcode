@@ -24,7 +24,6 @@ class Solution2:
         if total % 2 != 0:
             return False
         subset_sum = total // 2
-        n = len(nums)
 
         dp = [False] * (subset_sum + 1)
         dp[0] = True
