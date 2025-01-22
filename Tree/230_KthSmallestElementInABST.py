@@ -25,7 +25,7 @@ class Solution2:
 
 
 # Iteratively. O(H + k)
-class Solution2:
+class Solution3:
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
         stack = []
         cur = root
