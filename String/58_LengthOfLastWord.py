@@ -10,9 +10,7 @@ class Solution:
         return length
 
 
-'''
-class Solution:
+class Solution2:
     def lengthOfLastWord(self, s: str) -> int:
         arr = s.split()
         return len(arr[-1])
-'''

@@ -14,6 +14,7 @@ class Solution:
         inorder(root)
         return ans
 
+
 # Iteratively
 class Solution2:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
