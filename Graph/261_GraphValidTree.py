@@ -22,7 +22,7 @@ class Solution:
         return len(visited) == n
 
 
-# DFS BFS
+# DFS
 class Solution:
     def validTree(self, n: int, edges: List[List[int]]) -> bool:
         adjacent = defaultdict(list)
