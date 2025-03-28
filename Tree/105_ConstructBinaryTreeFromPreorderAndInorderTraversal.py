@@ -15,3 +15,23 @@ class Solution:
         root.right = self.buildTree(preorder[mid + 1:], inorder[mid + 1:])
 
         return root
+
+
+class Solution2:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
+        def build(left, right):
+            nonlocal root_idx
+            if left > right:
+                return None
+            root_val = preorder[root_idx]
+            root = TreeNode(root_val)
+            root_idx += 1
+            root.left = build(left, inorder_idx[root_val] - 1)
+            root.right = build(inorder_idx[root_val] + 1, right)
+            return root
+
+        root_idx = 0
+        inorder_idx = {}
+        for i, val in enumerate(inorder):
+            inorder_idx[val] = i
+        return build(0, len(preorder) - 1)

@@ -5,10 +5,10 @@ class Solution:
 
         def dfs(r, c, prev_height, visited):
             if (
-                    (r, c) in visited or
-                    r < 0 or r == ROWS or
-                    c < 0 or c == COLS or
-                    heights[r][c] < prev_height
+                (r, c) in visited or
+                r < 0 or r == ROWS or
+                c < 0 or c == COLS or
+                heights[r][c] < prev_height
             ):
                 return
             visited.add((r, c))

@@ -27,3 +27,23 @@ class Solution:
                     queue.append(node.right)
 
         return root
+
+
+# O(1) Space. Only works for perfect binary tree
+class Solution2:
+    def connect(self, root: 'Optional[Node]') -> 'Optional[Node]':
+        if not root:
+            return None
+
+        leftmost = root
+
+        while leftmost.left:
+            head = leftmost
+            while head:
+                head.left.next = head.right
+                if head.next:
+                    head.right.next = head.next.left
+                head = head.next
+            leftmost = leftmost.left
+
+        return root

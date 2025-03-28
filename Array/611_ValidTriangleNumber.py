@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Solution:    # sort + binary search
     def triangleNumber(self, nums: List[int]) -> int:
         n = len(nums)
