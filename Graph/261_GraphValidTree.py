@@ -44,3 +44,29 @@ class Solution:
             return True
 
         return dfs(0, -1) and len(visited) == n
+
+
+# Advanced Graph Theory + Iterative DFS
+class Solution:
+    def validTree(self, n: int, edges: List[List[int]]) -> bool:
+        # For the graph to be a valid tree, it must have exactly n - 1 edges
+        if len(edges) != n - 1:
+            return False
+
+        adj = defaultdict(list)
+        for u, v in edges:
+            adj[u].append(v)
+            adj[v].append(u)
+
+        visited = {0}
+        stack = [0]
+
+        while stack:
+            node = stack.pop()
+            for nei in adj[node]:
+                if nei in visited:
+                    continue
+                visited.add(nei)
+                stack.append(nei)
+
+        return len(visited) == n
