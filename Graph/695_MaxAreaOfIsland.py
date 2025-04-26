@@ -23,7 +23,7 @@ class Solution:
         return area
 
 
-class Solution:
+class Solution2:
     def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
         rows, cols = len(grid), len(grid[0])
 

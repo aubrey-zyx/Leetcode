@@ -3,25 +3,23 @@ class Solution:
         """
         Do not return anything, modify rooms in-place instead.
         """
-        rows, cols = len(rooms), len(rooms[0])
+        m, n = len(rooms), len(rooms[0])
         queue = deque()
-        visited = set()
-        directions = [[0, 1], [0, -1], [1, 0], [-1, 0]]
+        directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
+        INF = 2 ** 31 - 1
 
-        for r in range(rows):
-            for c in range(cols):
+        for r in range(m):
+            for c in range(n):
                 if rooms[r][c] == 0:
                     queue.append((r, c))
-                    visited.add((r, c))
 
-        steps = 0
+        distance = 0
         while queue:
-            steps += 1
+            distance += 1
             for _ in range(len(queue)):
                 r, c = queue.popleft()
                 for dr, dc in directions:
                     nr, nc = r + dr, c + dc
-                    if 0 <= nr < rows and 0 <= nc < cols and (nr, nc) not in visited and rooms[nr][nc] > 0:
-                        rooms[nr][nc] = steps
+                    if 0 <= nr < m and 0 <= nc < n and rooms[nr][nc] == INF:
+                        rooms[nr][nc] = distance
                         queue.append((nr, nc))
-                        visited.add((nr, nc))
