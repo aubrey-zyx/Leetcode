@@ -4,11 +4,9 @@ class Solution:
             return root
         left = self.lowestCommonAncestor(root.left, p, q)
         right = self.lowestCommonAncestor(root.right, p, q)
-        if not left:
-            return right
-        if not right:
-            return left
-        return root
+        if left and right:
+            return root
+        return left if left else right
 
 
 # Use BFS to keep track of each node's parent and depth
