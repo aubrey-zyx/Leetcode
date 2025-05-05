@@ -28,7 +28,7 @@ class Solution2:
 
             if r + 1 >= k:
                 res.append(nums[q[0]])
-                l += 1
+                l += 1o
             r += 1
 
         return res
