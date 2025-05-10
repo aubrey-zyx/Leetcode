@@ -21,14 +21,19 @@ class Solution:
 class Solution2:
     def wordBreak(self, s: str, wordDict: List[str]) -> List[str]:
         res = []
+        word_set = set(wordDict)
+        n = len(s)
 
-        def dfs(i, path):
-            if i == len(s):
-                res.append(" ".join(path))
+        def backtrack(start, cur):
+            if start == n:
+                res.append(" ".join(cur))
                 return
-            for word in wordDict:
-                if s[i:].startswith(word):
-                    dfs(i + len(word), path + [word])
+            for end in range(start + 1, n + 1):
+                word = s[start: end]
+                if word in word_set:
+                    cur.append(word)
+                    backtrack(end, cur)
+                    cur.pop()
 
-        dfs(0, [])
+        backtrack(0, [])
         return res
