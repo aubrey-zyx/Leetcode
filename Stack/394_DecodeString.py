@@ -35,3 +35,28 @@ class Solution2:
                 i += 1
             return res
         return dfs(s, 0)
+
+
+# Recursion 2
+class Solution3:
+    def decodeString(self, s: str) -> str:
+        self.i = 0
+
+        def dfs(s):
+            res, k = "", 0
+            while self.i < len(s):
+                c = s[self.i]
+                if "0" <= c <= "9":
+                    k = k * 10 + int(c)
+                elif c == "[":
+                    self.i += 1
+                    res += k * dfs(s)
+                    k = 0
+                elif c == "]":
+                    return res
+                else:
+                    res += c
+                self.i += 1
+            return res
+
+        return dfs(s)
