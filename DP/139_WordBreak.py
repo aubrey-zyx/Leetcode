@@ -1,3 +1,4 @@
+# DP. Time O(n * k^2 + mk)
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         dict_set = set(wordDict)
@@ -13,8 +14,24 @@ class Solution:
         return dp[n]
 
 
-# BFS
+# Another DP. Time O(nmk)
 class Solution2:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        n = len(s)
+        dp = [False] * n
+        for i in range(n):
+            for word in wordDict:
+                if i < len(word) - 1:
+                    continue
+                if i == len(word) - 1 or dp[i - len(word)]:
+                    if s[i - len(word) + 1 : i + 1] == word:
+                        dp[i] = True
+                        break
+        return dp[-1]
+
+
+# BFS. Time O(n^3 + mk)
+class Solution3:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         words = set(wordDict)
         queue = deque([0])
